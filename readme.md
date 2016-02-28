@@ -2,17 +2,21 @@
 File and Folder dialog for NWJS and Node Webkit
 
 ## Installation
-Use Node Mode
+Use Node mode
 
 ```
 var dialog = require('nw-dialog')
 dialog.setContext(document) // work in client
+dialog.openFileDialog( ... )
 ```
 
-Use Client Mode
+Use Client mode
 
 ```
 <script src="nw-dialog/index.js"></script>
+nw.Dialog.openFileDialog( ... ) 
+// or
+window.Dialog.openFileDialog( ... )
 ```
 
 ## Example
@@ -20,23 +24,23 @@ Use Client Mode
 Simple 
 
 ```
-nw.Dialog.openFileDialog(function(result) {
+dialog.openFileDialog(function(result) {
 	alert(result)
 })
 ```
 
-With File Type
+With file type
 
 ```
-nw.Dialog.openFileDialog('.zip, .rar', function(result) {
+dialog.openFileDialog('.zip, .rar', function(result) {
 	alert(result)
 })
 ```
 
-Multiple Select
+Multiple select
 
 ```
-nw.Dialog.openFileDialog('.zip, .rar', true, function(result) {
+dialog.openFileDialog('.zip, .rar', true, function(result) {
 	alert(result)
 })
 ```
@@ -45,23 +49,23 @@ nw.Dialog.openFileDialog('.zip, .rar', true, function(result) {
 Simple
 
 ```
-nw.Dialog.saveFileDialog(function(result) {
+dialog.saveFileDialog(function(result) {
 	alert(result)
 })
 ```
 
-With File Name
+With file name
 
 ```
-nw.Dialog.saveFileDialog('name.txt', function(result) {
+dialog.saveFileDialog('name.txt', function(result) {
 	alert(result)
 })
 ```
 
-File Name and Default Directory
+File name and default directory
 
 ```
-nw.Dialog.saveFileDialog('name.txt', '/Users/didanurwanda', function(result) {
+dialog.saveFileDialog('name.txt', '/Users/didanurwanda', function(result) {
 	alert(result)
 })
 ```
@@ -70,7 +74,7 @@ nw.Dialog.saveFileDialog('name.txt', '/Users/didanurwanda', function(result) {
 Simple
 
 ```
-nw.Dialog.folderBrowseDialog(function(result) {
+dialog.folderBrowseDialog(function(result) {
 	alert(result)
 })
 ```
