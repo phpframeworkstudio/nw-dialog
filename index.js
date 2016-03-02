@@ -8,7 +8,7 @@ var nwdialog = {
         this._context = context;
     },
 
-    openFileDialog: function(filter, multiple, callback) {
+    openFileDialog: function(filter, multiple, workdir, callback) {
 
         var fn          = callback;
         var node        = this._context.createElement('input');
@@ -20,24 +20,28 @@ var nwdialog = {
             fn = filter;
         } else if (typeof filter === 'string') {
             node.setAttribute('accept', filter);
-        } else if (this.isArray(filter)) {
-            node.setAttribute('accept', filter.join(','));
         } else if (typeof filter === 'boolean' && filter === true) {
             node.setAttribute('multiple', '');
+        } else if (this.isArray(filter)) {
+            node.setAttribute('accept', filter.join(','));
         }
 
         if (typeof multiple === 'function') {
             fn = multiple;
+        } else if (typeof multiple === 'string') {
+            node.setAttribute('nwworkingdir', multiple);
         } else if (typeof multiple === 'boolean' && multiple === true) {
             node.setAttribute('multiple', '');
-        } else if (typeof multiple === 'string') {
-            node.setAttribute('nwdirectory', ''); // not work in 0.13
         }
 
-        this._context.body.appendChild(node);
-        node.addEventListener('change', function() {
+        if (typeof workdir === 'function') {
+            fn = workdir;
+        } else if (typeof workdir === 'string') {
+            node.setAttribute('nwworkingdir', workdir);
+        }
+
+        node.addEventListener('change', function(e) {
             fn(node.value);
-            node.remove();
         });
         node.click();
 
@@ -69,29 +73,32 @@ var nwdialog = {
         if (typeof directory === 'function') {
             fn = directory;
         } else if (typeof directory === 'string') {
-            node.setAttribute('nwdirectory', directory); //not work in 0.13
+            node.setAttribute('nwworkingdir', directory);
         }
 
-        this._context.body.appendChild(node);
         node.addEventListener('change', function() {
             fn(node.value);
-            node.remove();
         });
         node.click();
 
     },
 
-    folderBrowserDialog: function(callback) {
+    folderBrowserDialog: function(workdir, callback) {
+        var fn          = callback;
         var node        = this._context.createElement('input');
         node.type       = 'file';
         node.id         = 'folder-browser-dialog';
         node.style      = 'display: none';
         node.nwdirectory= true;
 
-        this._context.body.appendChild(node);
+        if (typeof workdir === 'function') {
+            fn = workdir
+        } else if (typeof workdir === 'string') {
+            node.setAttribute('nwworkingdir', workdir);
+        }
+
         node.addEventListener('change', function() {
-            callback(node.value);
-            node.remove();
+            fn(node.value);
         });
         node.click();
     },
@@ -103,7 +110,8 @@ var nwdialog = {
 }
 
 if (typeof exports == 'undefined') {
-    nw.Dialog = window.Dialog = nwdialog;
+    nw.Dialog = nwdialog;
+    window.dialog = nwdialog;
 } else {
     module.exports = nwdialog;
 }

@@ -7,7 +7,7 @@ Use Node mode
 `npm install nw-dialog -S`
 
 
-```
+```JavaScript
 var dialog = require('nw-dialog')
 dialog.setContext(document) // work in client
 dialog.openFileDialog( ... )
@@ -15,18 +15,18 @@ dialog.openFileDialog( ... )
 
 Use Client mode
 
-```
+```JavaScript
 <script src="nw-dialog/index.js"></script>
 nw.Dialog.openFileDialog( ... ) 
 // or
-Dialog.openFileDialog( ... )
+window.dialog.openFileDialog( ... )
 ```
 
 ## Example
 #### OpenFileDialog
 Simple 
 
-```
+```JavaScript
 dialog.openFileDialog(function(result) {
     alert(result)
 })
@@ -34,37 +34,55 @@ dialog.openFileDialog(function(result) {
 
 With file type
 
-```
+```JavaScript
 dialog.openFileDialog('.zip,.rar', function(result) {
     alert(result)
 })
+```
+or
 
-// or
-
+```JavaScript
 dialog.openFileDialog(['.zip', '.rar'], function(result) {
     alert(result)
 })
 ```
 
-
 Multiple select
 
-```
+```JavaScript
 dialog.openFileDialog(true, function(result) {
     alert(result)
 })
+```
 
-// with file type
+File type + Multiple select
 
+```JavaScript
 dialog.openFileDialog('.zip,.rar', true, function(result) {
     alert(result)
+})
+```
+
+File type + Working directory
+
+```JavaScript
+dialog.openFileDialog('.zip,.rar', '/Users/didanurwanda', function(result) {
+	alert(result)
+})
+```
+
+File type + Multiple select + Working directory
+
+```JavaScript
+dialog.openFileDialog('.zip,.rar', true, '/Users/didanurwanda', function(result) {
+	alert(result)
 })
 ```
 
 ### SaveFileDialog
 Simple
 
-```
+```JavaScript
 dialog.saveFileDialog(function(result) {
     alert(result)
 })
@@ -72,7 +90,7 @@ dialog.saveFileDialog(function(result) {
 
 File name
 
-```
+```JavaScript
 dialog.saveFileDialog('name.txt', function(result) {
     alert(result)
 })
@@ -80,21 +98,22 @@ dialog.saveFileDialog('name.txt', function(result) {
 
 With extension
 
-```
-dialog.saveFileDialog('name', '.txt', function(result) {
+```JavaScript
+dialog.saveFileDialog('name', '.txt,.srt', function(result) {
     alert(result)
 })
+```
+or
 
-// or
-
+```JavaScript
 dialog.saveFileDialog('name', ['.txt', '.srt'], function(result) {
     alert(result)
 })
 ```
 
-Default directory
+Working directory
 
-```
+```JavaScript
 dialog.saveFileDialog('name', '.txt', '/Users/didanurwanda', function(result) {
     alert(result)
 })
@@ -103,8 +122,16 @@ dialog.saveFileDialog('name', '.txt', '/Users/didanurwanda', function(result) {
 ### FolderBrowseDialog
 Simple
 
-```
+```JavaScript
 dialog.folderBrowseDialog(function(result) {
+    alert(result)
+})
+```
+
+Default Directory
+
+```JavaScript
+dialog.folderBrowseDialog('/Users/didanurwanda', function(result) {
     alert(result)
 })
 ```
