@@ -1,0 +1,23 @@
+{
+  "name": "nw-dialog",
+  "version": "1.0.4",
+  "description": "Node Webkit Dialog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dida Nurwanda",
+  "license": "MIT",
+  "homepage": "http://www.didanurwanda.com",
+  "keywords": [
+    "nwjs",
+    "dialog",
+    "node",
+    "webkit",
+    "dialog",
+    "dialog",
+    "nwjs",
+    "node",
+    "webkit"
+  ]
+}
