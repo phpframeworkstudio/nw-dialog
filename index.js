@@ -40,8 +40,10 @@ var nwdialog = {
             node.setAttribute('nwworkingdir', workdir);
         }
 
+        this._context.body.appendChild(node);
         node.addEventListener('change', function(e) {
             fn(node.value);
+            node.remove();
         });
         node.click();
 
@@ -76,8 +78,10 @@ var nwdialog = {
             node.setAttribute('nwworkingdir', directory);
         }
 
+        this._context.body.appendChild(node);
         node.addEventListener('change', function() {
             fn(node.value);
+            node.remove();
         });
         node.click();
 
@@ -97,8 +101,10 @@ var nwdialog = {
             node.setAttribute('nwworkingdir', workdir);
         }
 
+        this._context.body.appendChild(node);
         node.addEventListener('change', function() {
             fn(node.value);
+            node.remove();
         });
         node.click();
     },
