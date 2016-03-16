@@ -2,7 +2,7 @@
 
 var nwdialog = {
 
-    _context: document,
+    _context: typeof global.DOMDocument === 'undefined' ? document : global.DOMDocument,
 
     setContext: function(context) {
         this._context = context;

@@ -1,6 +1,6 @@
 {
   "name": "nw-dialog",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Node Webkit Dialog",
   "main": "index.js",
   "scripts": {

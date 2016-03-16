@@ -119,11 +119,11 @@ dialog.saveFileDialog('name', '.txt', '/Users/didanurwanda', function(result) {
 })
 ```
 
-### FolderBrowseDialog
+### FolderBrowserDialog
 Simple
 
 ```JavaScript
-dialog.folderBrowseDialog(function(result) {
+dialog.folderBrowserDialog(function(result) {
     alert(result)
 })
 ```
@@ -131,7 +131,7 @@ dialog.folderBrowseDialog(function(result) {
 Default Directory
 
 ```JavaScript
-dialog.folderBrowseDialog('/Users/didanurwanda', function(result) {
+dialog.folderBrowserDialog('/Users/didanurwanda', function(result) {
     alert(result)
 })
 ```
